@@ -46,8 +46,7 @@ class QuestionViewController: UIViewController {
                 Answer(text: "-Let's hold on a moment, I am sure we can figure somthing out", type: .lannister),
                 Answer(text: "-You remain silent, for you have always been ready though you do not start them", type: .stark),
                 Answer(text: "-I don't want to fight. Please leave me alone.", type: .greyjoy)
-            ]
-        ),
+            ]),
         Question(
             text: "What color(s) would you choose for your family flag",
             type: .multiple,
@@ -56,15 +55,27 @@ class QuestionViewController: UIViewController {
                 Answer(text: "Grey", type: .stark),
                 Answer(text: "Yellow", type: .baratheon),
                 Answer(text: "Black", type: .whitewalker)
-            ]
-        ),
-        Question(text: "How much time do you spend with your family?", type: .ranged, answers: [
-            Answer(text: "All the time and I love it!", type: .stark),
-            Answer(text: "All the time and I haaate it!", type: .tyrell),
-            Answer(text: "Whenever I am not working ", type: .targaryen),
-            Answer(text: "Never", type: .whitewalker)
-        ]
-        )
+            ]),
+        Question(
+            text: "How much time do you spend with your family?",
+            type: .ranged,
+            answers: [
+                Answer(text: "All the time and I love it!", type: .stark),
+                Answer(text: "All the time and I haaate it!", type: .tyrell),
+                Answer(text: "Whenever I am not working ", type: .targaryen),
+                Answer(text: "Never", type: .whitewalker)
+            ]),
+        Question(
+            text: "How would you prefer to die?",
+            type: .multiple,
+            answers: [
+                Answer(text: "I want to live forever", type: .whitewalker),
+                Answer(text: "In a firey blaze killing everyone and everything", type: .targaryen),
+                Answer(text: "Peacefully, in my sleep", type: .baratheon),
+                Answer(text: "At sea, flighting for what is mine", type: .greyjoy)
+
+
+            ])
     ]
     
     var questionIndex = 0
@@ -73,12 +84,10 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-        // Do any additional setup after loading the view.
     }
     
     func nextQuestion() {
         questionIndex += 1
-        
         if questionIndex < questions.count {
             updateUI()
         } else {
@@ -92,7 +101,6 @@ class QuestionViewController: UIViewController {
     
     @IBAction func singleAnswerButtonPressed(_ sender: UIButton) {
         let currentAnswers = questions[questionIndex].answers
-        
         switch sender {
         case singleButton1:
             answerChosen.append(currentAnswers[0])
@@ -107,10 +115,9 @@ class QuestionViewController: UIViewController {
         }
         nextQuestion()
     }
-   
+    
     @IBAction func multipleAnswerButtonPressed() {
         let currentAnswers = questions[questionIndex].answers
-        
         if multiSwitch1.isOn {
             answerChosen.append(currentAnswers[0])
         }
@@ -125,25 +132,14 @@ class QuestionViewController: UIViewController {
         }
         nextQuestion()
     }
+    
     @IBAction func rangedAnswerButtonPressed() {
         let currentAnswers = questions[questionIndex].answers
         let index = Int(round(rangedSlider.value * Float(currentAnswers.count - 1)))
-        
         answerChosen.append(currentAnswers[index])
-        
         nextQuestion()
     }
-    
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     func updateUI() {
         singleStackView.isHidden = true
         multipleStackView.isHidden = true
@@ -151,13 +147,11 @@ class QuestionViewController: UIViewController {
         
         let currentQuestion = questions[questionIndex]
         let currentAnswers = currentQuestion.answers
-        let totalProgress = Float(questionIndex) / Float(questions.count)
+        let totalProgress = Float(questionIndex + 1) / Float(questions.count)
         
         navigationItem.title = "Question #\(questionIndex + 1)"
         questionLabel.text = currentQuestion.text
         questionProgressView.setProgress(totalProgress, animated: true)
-        
-        
         
         switch currentQuestion.type {
         case .single:
@@ -170,11 +164,11 @@ class QuestionViewController: UIViewController {
         
         switch currentQuestion.type {
         case .single:
-        updateSingleStack(using: currentAnswers)
+            updateSingleStack(using: currentAnswers)
         case .multiple:
-        updateMultipleStack(using: currentAnswers)
+            updateMultipleStack(using: currentAnswers)
         case .ranged:
-        updateRangedStack(using: currentAnswers)
+            updateRangedStack(using: currentAnswers)
         }
     }
     
@@ -196,7 +190,6 @@ class QuestionViewController: UIViewController {
         multiLabel2.text = answers[1].text
         multiLabel3.text = answers[2].text
         multiLabel4.text = answers[3].text
-        
     }
     
     func updateRangedStack(using answers: [Answer]) {
@@ -208,9 +201,9 @@ class QuestionViewController: UIViewController {
     
     
     
-        
-        
-        
+    
+    
+    
     
     
     
