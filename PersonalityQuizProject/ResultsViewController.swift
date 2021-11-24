@@ -28,7 +28,7 @@ class ResultsViewController: UIViewController {
         
         calculatePersonalityResult()
         navigationItem.hidesBackButton = true
-                                     }
+    }
     func calculatePersonalityResult() {
         let frequencyOfAnswers = responses.reduce(into: [:]) {
             (counts, answer) in

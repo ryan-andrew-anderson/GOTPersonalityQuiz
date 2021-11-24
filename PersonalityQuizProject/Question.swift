@@ -49,7 +49,7 @@ enum GOTHouseType: Character {
             return "Growing Strong."
         case .whitewalker:
             return "WhiteWalkers- All Will Die, All Will Join Us."
-        
+            
         }
     }
 }

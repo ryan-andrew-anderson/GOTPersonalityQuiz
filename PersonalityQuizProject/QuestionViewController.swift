@@ -73,8 +73,8 @@ class QuestionViewController: UIViewController {
                 Answer(text: "In a firey blaze killing everyone and everything", type: .targaryen),
                 Answer(text: "Peacefully, in my sleep", type: .baratheon),
                 Answer(text: "At sea, flighting for what is mine", type: .greyjoy)
-
-
+                
+                
             ])
     ]
     
@@ -139,7 +139,7 @@ class QuestionViewController: UIViewController {
         answerChosen.append(currentAnswers[index])
         nextQuestion()
     }
-
+    
     func updateUI() {
         singleStackView.isHidden = true
         multipleStackView.isHidden = true
@@ -197,24 +197,5 @@ class QuestionViewController: UIViewController {
         rangedSlider.setValue(0.5, animated: false)
         rangedLabel1.text = answers.first?.text
         rangedLabel2.text = answers.last?.text
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+    }  
 }
